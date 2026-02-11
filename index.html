@@ -273,7 +273,7 @@ src="https://www.facebook.com/tr?id=1224389825922664&ev=PageView
             </div>
         </div> 
     <div class="text-center mt-12 opacity-0 animate-fade-in-up delay-300">
-                <a href="https://form.typeform.com/to/CJUewZtS" class="btn-shine group relative inline-flex items-center justify-center bg-gradient-to-r from-brand-gold to-brand-goldDark hover:from-brand-goldLight hover:to-brand-gold text-white font-serif font-bold text-lg md:text-2xl py-5 px-10 md:px-16 rounded-xl shadow-gold-glow hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] transition-all duration-300 transform hover:-translate-y-1 w-full md:w-auto tracking-wide border border-brand-gold/20">
+                <a onclick="avisarFacebook()" href="https://form.typeform.com/to/CJUewZtS" class="btn-shine group relative inline-flex items-center justify-center bg-gradient-to-r from-brand-gold to-brand-goldDark hover:from-brand-goldLight hover:to-brand-gold text-white font-serif font-bold text-lg md:text-2xl py-5 px-10 md:px-16 rounded-xl shadow-gold-glow hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] transition-all duration-300 transform hover:-translate-y-1 w-full md:w-auto tracking-wide border border-brand-gold/20">
                     PREENCHER APLICAÇÃO PARA MENTORIA
                 </a>
                 
@@ -431,7 +431,7 @@ src="https://www.facebook.com/tr?id=1224389825922664&ev=PageView
             </div>
 
             <div class="mt-12 opacity-0 animate-fade-in-up delay-300">
-                <a href="https://form.typeform.com/to/CJUewZtS" class="btn-shine group relative inline-flex items-center justify-center bg-gradient-to-r from-brand-gold to-brand-goldDark hover:from-brand-goldLight hover:to-brand-gold text-white font-serif font-bold text-lg md:text-2xl py-5 px-10 md:px-16 rounded-xl shadow-gold-glow hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] transition-all duration-300 transform hover:-translate-y-1 w-full md:w-auto tracking-wide border border-brand-gold/20">
+                <a onclick="avisarFacebook()" href="https://form.typeform.com/to/CJUewZtS" class="btn-shine group relative inline-flex items-center justify-center bg-gradient-to-r from-brand-gold to-brand-goldDark hover:from-brand-goldLight hover:to-brand-gold text-white font-serif font-bold text-lg md:text-2xl py-5 px-10 md:px-16 rounded-xl shadow-gold-glow hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] transition-all duration-300 transform hover:-translate-y-1 w-full md:w-auto tracking-wide border border-brand-gold/20">
                     QUERO APLICAR PARA UMA VAGA
                 </a>
                 
@@ -449,3 +449,27 @@ src="https://www.facebook.com/tr?id=1224389825922664&ev=PageView
             </div>
         </div>
     </footer>
+<script>
+  // Função que avisa o Facebook (via API)
+  function avisarFacebook() {
+    console.log("Enviando evento de InitiateCheckout para a API...");
+    
+    // Manda o sinal para o arquivo que criamos na pasta /api
+    fetch('/api/comprar', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}) // Enviamos vazio pois não temos o email ainda
+    })
+    .then(res => console.log("Evento enviado com sucesso!"))
+    .catch(err => console.error("Erro ao enviar:", err));
+  }
+
+  // --- AQUI VOCÊ CONECTA SEUS BOTÕES ---
+  // Troque 'ID_DO_SEU_BOTAO' pelo id real do botão no seu HTML, 
+  // ou adicione onclick="avisarFacebook()" direto no link do botão.
+
+  // Exemplo: Se seus botões de aplicação tiverem a classe "btn-aplicar"
+  document.querySelectorAll('.btn-aplicar').forEach(botao => {
+      botao.addEventListener('click', avisarFacebook);
+  });
+</script>
